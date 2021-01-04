@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 
+use Illuminate\Support\Str;
+
 class Question extends Model
 {
     use HasFactory;
@@ -34,5 +36,22 @@ class Question extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function getUrlAttribute()
+    {
+        return route('questions.show', $this->id);
+    }
+
+    public function getBodyLimitAttribute()
+    {
+        $truncated = Str::limit($this->body, 450);
+
+        return $truncated;
+    }
+
+    public function getDateAttribute()
+    {
+        return $this->created_at->diffForHumans();
     }
 }
