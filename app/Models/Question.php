@@ -59,7 +59,7 @@ class Question extends Model
     {
         $answered           = "border border-green-500 text-green-500";
         $answeredAccepted   = "border bg-green-500 border-green-500 text-white";
-        
+
         if($this->answers > 0 )
         {
             if($this->best_answer_id)
@@ -71,4 +71,20 @@ class Question extends Model
 
         return "";
     }
+
+    public function getVotesStringAttribute()
+    {
+        return Str::plural('vote', $this->votes);
+    }
+
+    public function getAnswersStringAttribute()
+    {
+        return Str::plural('answer', $this->answers);
+    }
+    
+    public function getViewsStringAttribute()
+    {
+        return Str::plural('view', $this->views);
+    }
+
 }

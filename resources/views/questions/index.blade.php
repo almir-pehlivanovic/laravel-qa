@@ -1,10 +1,15 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('All Questions') }}
-        </h2>
+    <x-slot  name="header">
+        <div class="flex justify-between">
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                {{ __('All Questions') }}
+            </h2>
+            <x-jet-dropdown-link href="{{ route('questions.create') }}">
+                {{ __('Ask Question') }}
+            </x-jet-dropdown-link>
+        </div>
     </x-slot>
-
+       
     <div class="py-12">
         <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
             
@@ -14,14 +19,14 @@
                     <div class="px-6 text-center my-auto text-gray-800">
                         <div class="px-3 py-1 mb-1">
                             <strong class="text-lg">{{ $question->votes}}</strong> 
-                            <p class="text-sm text-gray-500">votes</p> 
+                            <p class="text-sm text-gray-500">{{ $question->votesString }}</p> 
                         </div>
                         <div class="px-3 py-1 {{ $question->status }} rounded-md  mb-1">
                             <strong class="text-lg">{{ $question->answers}}</strong> 
-                            <p class="text-sm">answers</p>
+                            <p class="text-sm">{{ $question->answersString }}</p>
                         </div>
                         <div class="px-3 py-2 text-sm text-gray-500">
-                            <p>{{ $question->views}} views</p>
+                            <p>{{ $question->views}} {{ $question->viewsString }}</p>
                         </div>
                     </div>
                     <div class="pr-6">
