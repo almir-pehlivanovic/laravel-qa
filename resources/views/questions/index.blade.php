@@ -10,11 +10,26 @@
             
             @foreach($questions as $question)
 
-                <div class="border-b border-gray-200 bg-white mb-8 p-6 sm:rounded-lg shadow-md">
-                    <h1 class="text-2xl font-semibold text-gray-700 my-2"><a href="{{ $question->url }}">{{ $question->title }}</a></h1>
-                    <h3 class="text-base font-normal text-gray-500">Asked by <span class="font-semibold text-lg hover:text-gray-800 transition ease-in duration-150 "><a href="#">{{ $question->user->name }}</a></span> <small class="text-gray-400 text-sm">{{ $question->date }}</small></h3>
-                    <hr class="my-1">
-                    <p class="font-normal text-gray-500">{{ $question->body_limit }}</p>
+                <div class="flex border-b border-gray-200 bg-white mb-8 py-6 sm:rounded-lg shadow-md">
+                    <div class="px-6 text-center my-auto text-gray-800">
+                        <div class="px-3 py-1 mb-1">
+                            <strong class="text-lg">{{ $question->votes}}</strong> 
+                            <p class="text-sm text-gray-500">votes</p> 
+                        </div>
+                        <div class="px-3 py-1 {{ $question->status }} rounded-md  mb-1">
+                            <strong class="text-lg">{{ $question->answers}}</strong> 
+                            <p class="text-sm">answers</p>
+                        </div>
+                        <div class="px-3 py-2 text-sm text-gray-500">
+                            <p>{{ $question->views}} views</p>
+                        </div>
+                    </div>
+                    <div class="pr-6">
+                        <h1 class="text-xl sm:text-2xl font-semibold text-gray-700"><a href="{{ $question->url }}">{{ $question->title }}</a></h1>
+                        <h3 class="text-md sm:text-base font-normal text-gray-500">Asked by <span class="font-semibold text-md sm:text-lg hover:text-gray-800 transition ease-in duration-150 "><a href="#">{{ $question->user->name }}</a></span> <small class="text-gray-400 text-sm">{{ $question->date }}</small></h3>
+                        <hr class="my-1">
+                        <p class="text-sm font-normal text-gray-500">{{ $question->body_limit }}</p>
+                    </div>
                 </div>
 
             @endforeach

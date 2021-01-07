@@ -45,7 +45,7 @@ class Question extends Model
 
     public function getBodyLimitAttribute()
     {
-        $truncated = Str::limit($this->body, 450);
+        $truncated = Str::limit($this->body, 300);
 
         return $truncated;
     }
@@ -53,5 +53,22 @@ class Question extends Model
     public function getDateAttribute()
     {
         return $this->created_at->diffForHumans();
+    }
+
+    public function getStatusAttribute()
+    {
+        $answered           = "border border-green-500 text-green-500";
+        $answeredAccepted   = "border bg-green-500 border-green-500 text-white";
+        
+        if($this->answers > 0 )
+        {
+            if($this->best_answer_id)
+            {
+                return $answeredAccepted;
+            }
+            return  $answered;
+        }
+
+        return "";
     }
 }
