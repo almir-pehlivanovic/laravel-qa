@@ -27,7 +27,8 @@ class QuestionsController extends Controller
     public function create()
     {
         $question = new Question();
-        return view('questions.show', compact('question'));
+
+        return view('questions.create', compact('question'));
     }
 
     /**
@@ -60,7 +61,9 @@ class QuestionsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $question = Question::findOrFail($id);
+
+        return view('questions.edit', compact('question'));
     }
 
     /**
