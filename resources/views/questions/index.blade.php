@@ -31,11 +31,11 @@
                             <p>{{ $question->views}} {{ $question->viewsString }}</p>
                         </div>
                     </div>
-                    <div class="pr-6">
-                        <div class="flex justify-between items-center">
+                    <div class="pr-6 w-full">
+                        <div class="flex justify-between items-center flex-wrap">
                             <h1 class="text-xl sm:text-2xl font-semibold text-gray-700"><a href="{{ $question->url }}">{{ $question->title }}</a></h1>
                             <a href="{{ route('questions.edit', $question->id) }}">
-                                <button type ="button" class="ml-2 inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:text-gray-800 active:bg-gray-50 transition ease-in-out duration-150">
+                                <button type ="button" class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:text-gray-800 active:bg-gray-50 transition ease-in-out duration-150">
                                     {{ __('Edit') }}
                                 </button>
                             </a>

@@ -18,6 +18,13 @@
     <div>
         <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
             @livewire('questions.edit-question', ['question' => $question->id] )
+
+            <x-jet-section-border />
+
+            <div class="mt-10 sm:mt-0">
+                @livewire('questions.delete-question', ['question' => $question->id])
+            </div>
+
         </div>
     </div>
 </x-app-layout>
