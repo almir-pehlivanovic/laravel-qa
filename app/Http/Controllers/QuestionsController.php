@@ -65,7 +65,12 @@ class QuestionsController extends Controller
      */
     public function edit($slug)
     {
+        
         $question = Question::where('slug', $slug)->firstOrFail();
+
+        if (! \Gate::allows('update-question', $question)) {
+            abort(403);
+        }
 
         return view('questions.edit', compact('question'));
     }

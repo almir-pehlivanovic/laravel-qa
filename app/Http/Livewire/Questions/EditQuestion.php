@@ -27,6 +27,10 @@ class EditQuestion extends Component
 
     public function editQuestion()
     {
+        if (! \Gate::allows('update-question', $this->question)) {
+            abort(403);
+        }
+
         $this->validate();
         
         $this->question->update([

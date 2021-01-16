@@ -23,6 +23,10 @@ class DeleteQuestion extends Component
 
     public function confirmQuestionDeletion()
     {
+        if (! \Gate::allows('delete-question', $this->question)) {
+            abort(403);
+        }
+        
         $this->resetErrorBag();
 
         $this->password = '';
