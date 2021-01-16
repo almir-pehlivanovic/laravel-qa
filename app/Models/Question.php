@@ -18,7 +18,7 @@ class Question extends Model
         'slug',
         'body',
         'views',
-        'answers',
+        'answers_count',
         'votes',
         'best_answer_id',
         'user_id',
@@ -36,6 +36,11 @@ class Question extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function answers()
+    {
+        return $this->hasMany(Answer::class);
     }
 
     public function getUrlAttribute()
@@ -60,7 +65,7 @@ class Question extends Model
         $answered           = "border border-green-500 text-green-500";
         $answeredAccepted   = "border bg-green-500 border-green-500 text-white";
 
-        if($this->answers > 0 )
+        if($this->answers_count > 0 )
         {
             if($this->best_answer_id)
             {
@@ -79,7 +84,7 @@ class Question extends Model
 
     public function getAnswersStringAttribute()
     {
-        return Str::plural('answer', $this->answers);
+        return Str::plural('answer', $this->answers_count);
     }
     
     public function getViewsStringAttribute()

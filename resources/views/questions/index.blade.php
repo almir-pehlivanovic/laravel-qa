@@ -24,7 +24,7 @@
                             <p class="text-sm text-gray-500">{{ $question->votesString }}</p> 
                         </div>
                         <div class="px-3 py-1 {{ $question->status }} rounded-md  mb-1">
-                            <strong class="text-lg">{{ $question->answers}}</strong> 
+                            <strong class="text-lg">{{ $question->answers_count}}</strong> 
                             <p class="text-sm">{{ $question->answersString }}</p>
                         </div>
                         <div class="px-3 py-2 text-sm text-gray-500">
