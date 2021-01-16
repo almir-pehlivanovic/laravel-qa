@@ -33,7 +33,7 @@ class AuthServiceProvider extends ServiceProvider
         });
         
         \Gate::define('delete-question', function (User $user, Question $question) {
-            return $user->id === $question->user_id;
+            return $user->id === $question->user_id && $question->answers_count < 1;
         });
     }
 }
