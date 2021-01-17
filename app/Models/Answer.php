@@ -18,4 +18,15 @@ class Answer extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    // lifecycle created() every time when answer is created increment question column answers_count
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::created(function ($answer) {
+            $answer->question->increment('answers_count');
+        });
+    }
 }
