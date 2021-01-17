@@ -50,7 +50,7 @@ class QuestionsController extends Controller
      */
     public function show($slug)
     {
-        $question = Question::where('slug', $slug)->firstOrFail();
+        $question = Question::with('answers.user')->where('slug', $slug)->firstOrFail();
         
         $question->increment('views');
 

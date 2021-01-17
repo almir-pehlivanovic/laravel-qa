@@ -25,7 +25,25 @@
                     <p class="text-sm font-normal text-gray-500">{{ $question->body }}</p>
                 </div>
             </div>
-            
         </div>
+        
+        <div class="max-w-5xl mx-auto sm:px-6 lg:px-8">
+            <h3 class="text-md sm:text-base font-normal text-gray-500"> {{ $question->answers_count}} {{ $question->answersString }} </h3>
+            <x-jet-section-border />
+        </div>
+       
+        @foreach($question->answers as $answer)
+            <div class="max-w-5xl mx-auto sm:px-6 lg:px-8">
+                <div class="flex border-b border-gray-200 bg-white mb-8 sm:rounded-lg shadow-md">
+                    <div class="p-6 w-full">
+                        <img src="{{ $answer->user->profile_photo_url }}" alt="{{ $answer->user->name }}" class="rounded-full h-20 w-20 object-cover">
+                        <h3 class="text-md sm:text-base font-normal text-gray-500">Answered by <span class="font-semibold text-md sm:text-lg hover:text-gray-800 transition ease-in duration-150 "><a href="#">{{ $answer->user->name }}</a></span> <small class="text-gray-400 text-sm">{{ $answer->date }}</small></h3>
+                        <hr class="my-1">
+                        <p class="text-sm font-normal text-gray-500">{{ $answer->body }}</p>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+
     </div>
 </x-app-layout>
