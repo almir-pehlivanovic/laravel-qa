@@ -55,14 +55,22 @@ class Question extends Model
         return $truncated;
     }
 
+    public function getTitleLimitAttribute()
+    {
+        $truncated = Str::limit($this->title, 50);
+
+        return $truncated;
+    }
+
     public function getDateAttribute()
     {
         return $this->created_at->diffForHumans();
     }
 
-    public function getStatusAttribute()
+    public function getStatusAnswersAttribute()
     {
-        $answered           = "border border-green-500 text-green-500";
+        $answered  = "text-red-400";
+        $noAnswers = "text-gray-400";
         $answeredAccepted   = "border bg-green-500 border-green-500 text-white";
 
         if($this->answers_count > 0 )
@@ -74,8 +82,37 @@ class Question extends Model
             return  $answered;
         }
 
-        return "";
+        return $noAnswers;
     }
+
+    public function getStatusVotesAttribute()
+    {
+        $votes  = "text-green-400";
+        $noVotes = "text-gray-400";
+    
+        if($this->votes > 0 )
+        {
+            return  $votes;
+        }
+
+        return $noVotes;
+    }
+
+
+    public function getStatusViewsAttribute()
+    {
+        $views  = "text-indigo-400";
+        $noViews = "text-gray-400";
+
+        if($this->views > 0 )
+        {
+            return  $views;
+        }
+
+        return $noViews;
+    }
+
+
 
     public function getVotesStringAttribute()
     {
